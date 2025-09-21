@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Giovanni</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: url("https://wallpapers.com/images/hd/cristiano-ronaldo-real-madrid-logo-e32u68w84b2pip8d.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 25px;
+      max-width: 90%;
+      width: 520px;
+      text-align: center;
+      box-shadow: 0px 6px 25px rgba(0,0,0,0.8);
+      animation: fadeIn 2s ease-in-out;
+      position: relative;
+      z-index: 2;
+    }
+    /* Animaciones de textos */
+    h1 {
+      font-size: 2.4em;
+      color: #ff4444;
+      text-shadow: 2px 2px 15px black;
+      margin-bottom: 10px;
+      animation: bounce 1.5s infinite alternate;
+    }
+    h2 {
+      font-size: 1.8em;
+      color: #fff;
+      text-shadow: 2px 2px 10px black;
+      margin: 10px 0 20px 0;
+      animation: glow 2s infinite alternate;
+    }
+    .info {
+      margin-top: 10px;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      animation: fadeInUp 2s ease-in-out;
+    }
+    .location-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 105, 105, 0.4);
+    }
+    .location-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 105, 105, 0.6);
+    }
+    .location-link:active {
+      transform: translateY(0);
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #ffcc00;
+      font-style: italic;
+      animation: pulse 2s infinite;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #ddd;
+      animation: pulse 2s infinite;
+    }
+    /* Estilos para el botón de CR7 */
+    .cr7-button {
+      margin: 25px auto 10px auto;
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #b30000, #ff4444);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseButton 2s infinite;
+      z-index: 3;
+    }
+    .cr7-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.7);
+    }
+    .cr7-button:active {
+      transform: scale(0.98);
+    }
+    .speaker-icon {
+      margin-right: 10px;
+      font-size: 1.4em;
+    }
+    
+    /* GLOBOS MEJORADOS - Formas y tamaños diferentes */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      opacity: 0.9;
+      animation: float 15s ease-in-out infinite;
+      z-index: 1;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+    }
+    
+    /* Forma estándar (ovalada) */
+    .balloon.oval {
+      width: 50px;
+      height: 65px;
+      border-radius: 50% 50% 45% 55%;
+    }
+    
+    /* Forma redonda */
+    .balloon.round {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    
+    /* Forma alargada */
+    .balloon.long {
+      width: 40px;
+      height: 70px;
+      border-radius: 40% 40% 50% 50%;
+    }
+    
+    /* Forma de corazón */
+    .balloon.heart {
+      width: 55px;
+      height: 55px;
+      border-radius: 50% 50% 0 0;
+      transform: rotate(45deg);
+    }
+    .balloon.heart::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: 50%;
+    }
+    
+    /* Cuerda del globo */
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: rgba(255, 255, 255, 0.7);
+      transform: translateX(-50%);
+    }
+    
+    /* Para el corazón, ajustamos la cuerda */
+    .balloon.heart::after {
+      transform: translateX(-50%) rotate(-45deg);
+      bottom: -15px;
+    }
+    
+    /* Colores variados */
+    .balloon.color1 { background: #ff6666; } /* Rojo */
+    .balloon.color2 { background: #66ffcc; } /* Turquesa */
+    .balloon.color3 { background: #ffcc66; } /* Amarillo */
+    .balloon.color4 { background: #66a3ff; } /* Azul */
+    .balloon.color5 { background: #ff99ff; } /* Rosa */
+    .balloon.color6 { background: #99ff66; } /* Verde */
+    .balloon.color7 { background: #ff9933; } /* Naranja */
+    .balloon.color8 { background: #cc99ff; } /* Lila */
+    
+    /* Diferentes tamaños */
+    .balloon.small {
+      transform: scale(0.7);
+    }
+    .balloon.small.heart {
+      transform: scale(0.7) rotate(45deg);
+    }
+    .balloon.medium {
+      transform: scale(1);
+    }
+    .balloon.medium.heart {
+      transform: scale(1) rotate(45deg);
+    }
+    .balloon.large {
+      transform: scale(1.3);
+    }
+    .balloon.large.heart {
+      transform: scale(1.3) rotate(45deg);
+    }
+    
+    /* Posicionamiento y animación variada */
+    .balloon:nth-child(1) {
+      left: 5%;
+      animation-delay: 0s;
+      animation-duration: 14s;
+    }
+    .balloon:nth-child(2) {
+      left: 15%;
+      animation-delay: 2s;
+      animation-duration: 16s;
+    }
+    .balloon:nth-child(3) {
+      left: 30%;
+      animation-delay: 5s;
+      animation-duration: 12s;
+    }
+    .balloon:nth-child(4) {
+      left: 45%;
+      animation-delay: 7s;
+      animation-duration: 18s;
+    }
+    .balloon:nth-child(5) {
+      left: 60%;
+      animation-delay: 1s;
+      animation-duration: 15s;
+    }
+    .balloon:nth-child(6) {
+      left: 75%;
+      animation-delay: 4s;
+      animation-duration: 13s;
+    }
+    .balloon:nth-child(7) {
+      left: 85%;
+      animation-delay: 6s;
+      animation-duration: 17s;
+    }
+    .balloon:nth-child(8) {
+      left: 90%;
+      animation-delay: 3s;
+      animation-duration: 11s;
+    }
+    .balloon:nth-child(9) {
+      left: 20%;
+      animation-delay: 8s;
+      animation-duration: 19s;
+    }
+    .balloon:nth-child(10) {
+      left: 65%;
+      animation-delay: 9s;
+      animation-duration: 20s;
+    }
+    
+    /* Animación mejorada con movimiento más natural */
+    @keyframes float {
+      0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0.8;
+      }
+      25% { 
+        transform: translateY(-200px) rotate(5deg); 
+        opacity: 1;
+      }
+      50% { 
+        transform: translateY(-400px) rotate(-3deg);
+      }
+      75% { 
+        transform: translateY(-600px) rotate(2deg);
+      }
+      100% { 
+        transform: translateY(-800px) rotate(-5deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Keyframes textos */
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-12px); }
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff; }
+      to { text-shadow: 0 0 25px #00ffff, 0 0 35px #00ffff; }
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseButton {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    /* Responsivo */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.3em; }
+      .info { font-size: 1em; }
+      .cr7-button { padding: 12px 25px; font-size: 1em; }
+      .location-link { padding: 8px 16px; font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Globos con diferentes formas y tamaños -->
+  <div class="balloon oval color1 medium"></div>
+  <div class="balloon round color2 large"></div>
+  <div class="balloon long color3 small"></div>
+  <div class="balloon heart color4 medium"></div>
+  <div class="balloon oval color5 large"></div>
+  <div class="balloon round color6 small"></div>
+  <div class="balloon long color7 medium"></div>
+  <div class="balloon heart color8 large"></div>
+  <div class="balloon oval color1 small"></div>
+  <div class="balloon round color2 medium"></div>
+
+  <div class="container">
+    <h1>¡Ven a festejar conmigo!</h1>
+    <h2>🎉 Giovanni Alexander te invita a su cumpleaños número 13 🎂</h2>
+    
+    <div class="info">
+      📅 <b>27 de Septiembre</b> <br>
+      🕓 17:00 P.M. <br>
+      📍 <b>Ubicación:</b> Ampliación Benito Juárez, Mariano Escobedo Mz 308 LT2<br>
+      <a href="https://maps.app.goo.gl/9AKnxZyvb1Py5yvAA" target="_blank" class="location-link">
+        🗺️ Ver ubicación exacta en Google Maps
+      </a> <br>
+      ¡Te esperamos con mucha alegría! 🎊
+    </div>
+
+    <div class="note">✨ Tu asistencia será el mejor regalo ✨</div>
+
+    <!-- Botón para reproducir el sonido CR7 -->
+    <button class="cr7-button" id="playCR7">
+      <span class="speaker-icon">🔊</span> ¡Presiona para el SIUUU!
+    </button>
+
+    <div class="footer">
+      Hecho con ❤️ estilo CR7
+    </div>
+  </div>
+
+  <!-- Audio CR7 (sin autoplay) -->
+  <audio id="siuSound" src="CR7.MP3"></audio>
+  <script>
+    const playButton = document.getElementById('playCR7');
+    const audio = document.getElementById('siuSound');
+    playButton.addEventListener('click', () => {
+      audio.play().catch(error => {
+        console.log("Error al reproducir el audio:", error);
+      });
+    });
+  </script>
+</body>
+</html>
